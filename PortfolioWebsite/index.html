@@ -1,0 +1,246 @@
+<html>
+  <head>
+    <link rel="stylesheet" href="style.css" />
+    <link
+      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+
+    <script>
+      current_thumb = 0;
+
+      $(document).ready(function () {
+        $(".portfolio-container .thumbnail img").on("click", function () {
+          $("#slide").attr("src", $(this).attr("src"));
+          $(".lightbox").css("display", "flex");
+          parent_e = $(this)[0].parentElement;
+          console.log(parent_e);
+          current_thumb = Array.from(parent_e.parentNode.children).indexOf(
+            parent_e
+          );
+          console.log(current_thumb);
+        });
+
+        $(".prev").on("click", function () {
+          if (current_thumb > 1) current_thumb--;
+          else
+            current_thumb =
+              document.getElementById("portfolio").children.length - 1;
+
+          $("#slide").attr(
+            "src",
+            document
+              .getElementById("portfolio")
+              .children[current_thumb].children[0].getAttribute("src")
+          );
+        });
+
+        $(".next").on("click", function () {
+          if (
+            current_thumb <
+            document.getElementById("portfolio").children.length - 1
+          )
+            current_thumb++;
+          else current_thumb = 1;
+
+          $("#slide").attr(
+            "src",
+            document
+              .getElementById("portfolio")
+              .children[current_thumb].children[0].getAttribute("src")
+          );
+        });
+
+        $(".close").on("click", function () {
+          console.log("hi");
+          $(".lightbox").css("display", "none");
+        });
+
+        $(".lightbox-bg").on("click", function () {
+          $(".lightbox").css("display", "none");
+        });
+      });
+    </script>
+  </head>
+  <body>
+    <div class="wrapper">
+      <div class="l-section">
+        <div class="logo">
+          <a href="#">Portfolio</a>
+        </div>
+
+        <div class="social-icons">
+          <ul>
+            <li>
+              <a href=""><i class="bx bxl-facebook"></i></a>
+            </li>
+            <li>
+              <a href=""><i class="bx bxl-twitter"></i></a>
+            </li>
+            <li>
+              <a href=""><i class="bx bxl-instagram"></i></a>
+            </li>
+            <li>
+              <a href=""><i class="bx bxl-pinterest"></i></a>
+            </li>
+            <li>
+              <a href=""><i class="bx bxl-linkedin"></i></a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-inner">
+          <div class="card-front">
+            <img src="pexels-ali-pazani-2887718.jpg" />
+          </div>
+          <div class="card-back">
+            <div class="card-back-detail">
+              <h1 class="heading1">About Me</h1>
+              <p class="para1">I am Frontend Developer</p>
+              <p class="para2">
+                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Lorem
+                ipsum dolor sit amet. Blanditiis, perferendis aspernatur ullam
+                ipsam natus a saepe, sit libero culpa temporibus iste, quas
+                distinctio. Quia corporis doloremque ipsum officia minima atque
+                dolor architecto exercitationem maiores. Adipisci non, eaque
+                voluptatibus alias id asperiores delectus expedita laudantium
+                iure cum autem voluptatem dignissimos doloremque mollitia
+                pariatur tempore illo a, quia corporis quisquam, dolorum
+                voluptates odit incidunt sunt! Repellendus, eveniet!
+              </p>
+              <button>More</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="r-section">
+        <nav>
+          <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#portfolio">Portfolio</a></li>
+            <li><a href="#contact">Contact</a></li>
+            <li><a href="#service">Service</a></li>
+          </ul>
+        </nav>
+
+        <div class="content-wrapper" id="home">
+          <div class="home section">
+            <p class="name">Amelia <span>Johns</span></p>
+            <h4>Frontend Developer</h4>
+            <p class="detail">
+              Lorem, ipsum dolor sit amet consectetur adipisicing elit.
+              Accusamus quidem incidunt at optio quo, dolorum voluptates,
+              soluta, laudantium tenetur eius earum voluptatem amet cum ipsam.
+              Adipisci quos ea consequatur tenetur quisquam ex maiores accusamus
+              reprehenderit.
+            </p>
+            <h5>Subscribe for the Future Update</h5>
+            <button>Resume</button>
+          </div>
+        </div>
+
+        <div class="content-wrapper">
+          <div class="portfolio-container section" id="portfolio">
+            <h1 class="heading2">Our Work</h1>
+            <div class="thumbnail"><img src="3.jpg" alt="" /></div>
+            <div class="thumbnail"><img src="4.jpg" alt="" /></div>
+            <div class="thumbnail"><img src="5.jpg" alt="" /></div>
+            <div class="thumbnail">
+              <img src="jessica-lewis-fJXv46LT7Xk-unsplash(1).jpg" alt="" />
+            </div>
+            <div class="thumbnail"><img src="5.jpg" alt="" /></div>
+            <div class="thumbnail">
+              <img src="startup-593341_1280.jpg" alt="" />
+            </div>
+            <div class="thumbnail">
+              <img src="startup-849805_1280.jpg" alt="" />
+            </div>
+            <div class="thumbnail">
+              <img src="vivek-kumar-7VfAcjlTF5g-unsplash.jpg" alt="" />
+            </div>
+          </div>
+
+          <div class="lightbox">
+            <div class="lightbox-bg"></div>
+
+            <span class="close"><i class="bx bx-x"></i></span>
+            <span class="prev"><i class="bx bxs-chevron-left"></i></span>
+            <span class="img-wrapper">
+              <img src="" alt="" id="slide" />
+            </span>
+            <span class="next"><i class="bx bx-chevron-right"></i></span>
+          </div>
+        </div>
+
+        <div class="content-wrapper">
+          <div class="contact section" id="contact">
+            <h1 class="heading2">Contact</h1>
+            <p class="para1">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia,
+              blanditiis.
+            </p>
+
+            <form action="#">
+              <h3>Message</h3>
+              <input type="text" placeholder="name" class="name" />
+              <input type="email" placeholder="email" class="email" />
+              <input type="text" placeholder="project" class="project" />
+              <textarea
+                name="message"
+                placeholder="Message"
+                class="message"
+                cols="30"
+                rows="10"
+              ></textarea>
+              <button type="submit">Send</button>
+            </form>
+          </div>
+        </div>
+
+        <div class="content-wrapper">
+          <div class="service section" id="service">
+            <h1 class="heading2">Service</h1>
+            <div class="sub-service">
+              <div>
+                <i class="bx bx-code-alt"></i>
+                <h2>Web Design</h2>
+                <p>
+                  Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eius
+                  quia quis accusantium, illo non quam id culpa sint debitis
+                  rem.
+                </p>
+                <a href="#">Learn More</a>
+              </div>
+
+              <div>
+                <i class="bx bxs-paint"></i>
+                <h2>Graphic Desgin</h2>
+                <p>
+                  Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eius
+                  quia quis accusantium, illo non quam id culpa sint debitis
+                  rem.
+                </p>
+                <a href="#">Learn More</a>
+              </div>
+
+              <div>
+                <i class="bx bx-desktop"></i>
+                <h2>Responsive Design</h2>
+                <p>
+                  Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eius
+                  quia quis accusantium, illo non quam id culpa sint debitis
+                  rem.
+                </p>
+                <a href="#">Learn More</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
